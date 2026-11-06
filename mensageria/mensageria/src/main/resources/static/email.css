@@ -1,0 +1,218 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* ÁREA PRINCIPAL */
+
+main {
+    min-height: 100vh;
+}
+
+.container {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 80px;
+}
+
+/* CAIXA DO CADASTRO */
+
+.box {
+    width: 450px;
+    height: auto;
+
+    padding: 40px;
+
+    background: #fff;
+
+    border: 2px solid #000;
+    border-radius: 20px;
+
+    box-shadow: 0 8px 25px #00000086;
+}
+
+
+/* TÍTULO */
+
+h1 {
+    text-align: center;
+    color: #6b555c;
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+
+
+/* CAMPOS */
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #6b555c;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.field input {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #ddc8cf;
+    border-radius: 10px;
+
+    outline: none;
+    font-size: 14px;
+}
+
+.field input:focus {
+    border-color: #a97889;
+}
+
+/* BOTÕES */
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.button {
+    display: block;
+    width: 100%;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #febc59d0;
+    color: #222;
+
+    text-align: center;
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.button:hover {
+    color: #c9585a;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
+    .box,
+    .form {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+
+        padding: 30px 25px;
+
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .field {
+        margin-bottom: 16px;
+    }
+
+    .field label {
+        font-size: 12px;
+    }
+
+    .field input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .actions {
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .button {
+        padding: 11px 15px;
+        font-size: 14px;
+    }
+
+    #mensagem {
+        font-size: 12px;
+    }
+}
+
+
+
+
+@keyframes entradaP {
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#mensagem {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: normal;
+    text-align: center;
+
+    margin: 10px 0;
+
+    background: linear-gradient(
+        90deg,
+        #febc59,
+        #a97889,
+        #6b555c
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation: entradaP 1s ease-in-out;
+}

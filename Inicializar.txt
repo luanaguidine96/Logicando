@@ -1,0 +1,15 @@
+cd "C:\Users\Elvis\Documents\LUANA\TCC\tcc  24-09-2026\mensageria\mensageria"
+.\mvnw.cmd spring-boot:run
+
+cd "C:\Users\Elvis\Documents\LUANA\TCC\tcc  24-09-2026\email\email"
+
+
+
+
+
+
+
+
+
+BCrypt.hashpw(): transforma a senha original em um hash antes de armazená-la no banco.
+BCrypt.checkpw(): verifica se a senha digitada corresponde ao hash que está salvo.

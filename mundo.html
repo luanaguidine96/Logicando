@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo</title>
+    <link rel="stylesheet" href="crianca.css">
+</head>
+<body>
+
+
+
+    <div class="topo">
+       
+        <p>Um espaço para aprender lógica, desenvolver ideias e se divertir no caminho.</p>
+        
+    </div>
+
+
+    <!-- MENU -->
+    <header>
+
+        <div class="logo">
+            <img src="img/logicando.jpg" width="200px">
+        </div>
+
+         <nav class="nav">
+            <a href="inicio-crianca.html">INÍCIO</a>
+            <a href="mundo.html">MUNDO</a>
+                    <a href="index.html">SAIR</a>
+        </nav>
+
+
+    </header>
+
+
+
+<main>
+    <center>
+    <div class="container">
+
+        <h1>MEU MUNDO</h1>
+        <p class="page-description">
+            ESPAÇO PARA EXPLICAÇÃO DA TRILHA
+        </p>
+
+
+    </div>
+    </center>
+</main>
+
+
+<div class="world" id="world">
+
+    <img src="img/mapa.png" class="world-line line-1" width="90%" height="auto">
+
+    <div class="fases">
+
+    <div class="fase fase1" data-fase="1">
+        <img src="img/fase1.png" alt="Fase 1">
+    </div>
+
+<div class="fase fase2" data-fase="2">
+        <img src="img/fase2.png" alt="Fase 2">
+    </div>
+
+<div class="fase fase3" data-fase="3">
+        <img src="img/fase3.png" alt="Fase 3">
+    </div>
+
+    <div class="fase fase4" data-fase="4">
+        <img src="img/fase4.png" alt="Fase 4">
+    </div>
+
+    <div class="fase fase5" data-fase="5">
+        <img src="img/fase5.png" alt="Fase 5">
+    </div>
+
+    <div class="fase fase6" data-fase="6">
+        <img src="img/fase6.png" alt="Fase 6">
+    </div>
+
+    <div class="fase fase7" data-fase="7">
+        <img src="img/fase7.png" alt="Fase 7">
+    </div>
+
+    <div class="fase fase8" data-fase="8">
+        <img src="img/fase8.png" alt="Fase 8">
+    </div>
+
+    <div class="fase fase9" data-fase="9">
+        <img src="img/fase9.png" alt="Fase 9">
+    </div>
+
+    <div class="fase fase10" data-fase="10">
+        <img src="img/fase10.png" alt="Fase 10">
+    </div>
+
+    <div class="fase fase11" data-fase="11">
+        <img src="img/fase11.png" alt="Fase 11">
+    </div>
+
+    <div class="fase fase12" data-fase="12">
+        <img src="img/fase12.png" alt="Fase 12">
+    </div>
+
+</div>
+</div>
+
+
+
+
+<script>
+
+
+const fases = document.querySelectorAll(".fase");
+const imagemJogar = "img/jogue-me.png";
+const imagemFeito = "img/feito.png";
+
+// Somente a primeira fase começa liberada
+//percorre cada elemento de uma coleção e executa uma função para cada um deles
+// A função recebe dois parâmetros: o elemento atual (fase) e o índice do elemento na coleção (indice)
+//são 12 fase e 11 indices para percorrer, então a primeira fase
+//  (índice 0) será liberada e as demais serão bloqueadas
+fases.forEach((fase, indice) => {
+
+    const imagem = fase.querySelector("img");
+    //O método querySelector("img") procura a primeira imagem dentro daquele elemento.
+const balao = document.createElement("img");
+
+balao.src = "img/jogue.png";
+balao.classList.add("balao-jogue");
+
+balao.alt = "Jogue esta fase";
+
+    // Se for a primeira fase, libera para jogar
+    if (indice === 0) {
+        imagem.src = imagemJogar;
+        //O classList é uma propriedade nativa do JavaScript usada para manipular as classes CSS
+        fase.classList.add("liberada");
+
+
+    fase.appendChild(balao);
+    } else {
+        fase.classList.add("bloqueada");
+    }
+
+
+    //tratamento ao captar clicks
+    fase.addEventListener("click", () => { 
+
+        // Impede o clique nas fases bloqueadas
+        if (fase.classList.contains("bloqueada")) {
+            return;
+        }
+//senao
+        // Marca a fase atual como concluída
+        imagem.src = imagemFeito;
+        imagem.alt = "Fase concluída";
+
+        fase.classList.remove("liberada");
+        fase.classList.add("concluida");
+        
+        // Remove o balão da fase concluída
+const balaoAtual = fase.querySelector(".balao-jogue");
+
+if (balaoAtual) {
+    balaoAtual.remove();
+}
+
+        // Descobre a próxima fase
+        const proximaFase = fases[indice + 1];
+
+        // Libera a próxima fase, se existir
+        if (proximaFase) {
+
+            proximaFase.classList.remove("bloqueada");
+            proximaFase.classList.add("liberada");
+
+            const imagemProxima = proximaFase.querySelector("img");
+
+            imagemProxima.src = imagemJogar;
+            imagemProxima.alt = "Jogar próxima fase";
+
+
+    const balaoProximo = document.createElement("img");
+
+    balaoProximo.src = "img/jogue.png";
+    balaoProximo.classList.add("balao-jogue");
+    balaoProximo.alt = "Jogue esta fase";
+
+    proximaFase.appendChild(balaoProximo);
+        }
+    });
+
+});
+
+
+
+</script>
+
+</body>
+</html>

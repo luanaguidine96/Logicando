@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Responsável</title>
+    <link rel="stylesheet" href="email.css">
+</head>
+<body>
+
+<main>
+    <form id="formCadastro" class="container">
+
+        <div class="box form">
+            <h1>CADASTRO DO RESPONSÁVEL</h1>
+
+            <div class="field">
+                <label for="name">NOME DO RESPONSÁVEL</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="field">
+                <label for="email">E-MAIL DO RESPONSÁVEL</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="field">
+                <label for="login">LOGIN DO RESPONSÁVEL</label>
+                <input type="text" id="login" required>
+            </div>
+
+            <div class="field">
+                <label for="senha">SENHA DO RESPONSÁVEL</label>
+                <input type="password" id="senha" required>
+            </div>
+
+            <h1>CADASTRO DA CRIANÇA</h1>
+
+            <div class="field">
+                <label for="loginCrianca">LOGIN DA CRIANÇA</label>
+                <input type="text" id="loginCrianca" required>
+            </div>
+
+            <div class="field">
+                <label for="senhaCrianca">SENHA DA CRIANÇA</label>
+                <input type="password" id="senhaCrianca" required>
+            </div>
+
+            <p id="mensagem"></p>
+
+            <div class="actions">
+                <button type="submit" class="button">
+                    CADASTRAR
+                </button>
+
+                <a class="button"
+                   href="http://127.0.0.1:5500/index.html">
+                    VOLTAR
+                </a>
+            </div>
+
+        </div>
+    </form>
+</main>
+
+<script src="email.js"></script>
+</body>
+</html>
