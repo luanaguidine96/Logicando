@@ -1,1 +1,126 @@
-<p>login-crianca works!</p>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Criança</title>
+   
+</head>
+
+<body>
+
+<main>
+
+    <div class="topo">
+        <p>Um espaço para aprender lógica, desenvolver ideias e se divertir no caminho.</p>
+    </div>
+
+    <div class="logo" style="text-align: center;">
+    <img src="/img/logicando.jpg" alt="Logicando">
+</div>
+
+    <div class="container">
+
+        <div class="caixa">
+            <h1>LOGIN</h1>
+            <p class="descricao">ÁREA DA CRIANÇA</p>
+
+            <form id="formLogin">
+
+                <div class="campo">
+                    <label for="login">LOGIN</label>
+                    
+  <input
+  type="password"
+  id="senha"
+  name="senha"
+  [(ngModel)]="senha"
+  required
+>
+                </div>
+
+                <div class="campo">
+                    <label for="senha">SENHA</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        required
+                    >
+                </div>
+
+                <p role="status">{{ mensagem }}</p>
+
+                <div class="botoes">
+                    <button class="botao" type="submit">ENTRAR</button>
+                    <a class="botao" routerLink="/">VOLTAR</a>
+                </div>
+
+            </form>
+        </div>
+
+        <img class="ilustracao" src="img/logincriança.png" alt="Login Criança">
+
+    </div>
+
+</main>
+
+<footer class="footer">
+
+    <div class="footer-redes">
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">WhatsApp</a>
+        <a href="#" target="_blank">TikTok</a>
+    </div>
+
+    <div class="footer-autor">
+        <p>Desenvolvido por <strong>Luana Guidine</strong></p>
+    </div>
+
+</footer>
+<script src="api.js"></script>
+<script>
+    const form = document.getElementById("formLogin");
+    const mensagem = document.getElementById("mensagem");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        mensagem.textContent = "Verificando login...";
+
+        const dados = {
+            login: document.getElementById("login").value,
+            senha: document.getElementById("senha").value,
+            tipo: "CRIANCA"
+        };
+
+        try {
+            const resposta = await requisicaoAPI("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dados)
+            });
+
+            const resultado = await resposta.json();
+
+            if (!resposta.ok) {
+                mensagem.textContent =
+                    resultado.mensagem || "Não foi possível entrar.";
+                return;
+            }
+
+            window.location.href = "mundo.html";
+
+        } catch (erro) {
+            mensagem.textContent =
+                "Não foi possível conectar ao servidor.";
+        }
+    });
+</script>
+
+</body>
+</html>
