@@ -107,7 +107,7 @@ nav a:hover {
 .hero {
     width: 100%;
 
-    background-image: url("img/lapis.png");
+    background-image: url("/angular-guards/assets/img/lapis.png");
     background-size: 100% auto;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -123,7 +123,7 @@ nav a:hover {
 .main{
     
 
-    background-image: url("img/lapis.png");
+    background-image: url("/img/lapis.png");
     background-size:  auto;
     background-position: center bottom;
     background-repeat: no-repeat;

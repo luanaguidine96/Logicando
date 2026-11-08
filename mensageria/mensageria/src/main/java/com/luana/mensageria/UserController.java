@@ -17,7 +17,7 @@ import com.luana.mensageria.Service.UserService;
 
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:4200"})
 @RestController
 public class UserController {
 

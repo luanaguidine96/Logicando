@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-acompanhamento',
-  template: '',
+  imports: [RouterLink],
+  templateUrl: './acompanhamento.html',
+  styleUrl: './acompanhamento.css'
 })
 export class Acompanhamento {
-  constructor() {
-    window.location.href = '/acompanhamento.html';
-  }
 }

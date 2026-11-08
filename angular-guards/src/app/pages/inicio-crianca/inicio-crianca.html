@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início da Criança</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
 <header>
     <div class="container header-content">
 
         <div class="logo">LOGO</div>
 
         <nav class="nav">
-            <a href="inicio-crianca.html">INÍCIO</a>
-            <a href="mundo.html">MUNDO</a>
-            <a href="index.html">SAIR</a>
+            <a routerLink="/inicio-crianca">INÍCIO</a>
+            <a routerLink="/mundo">MUNDO</a>
+            <a routerLink="/" (click)="sair()">SAIR</a>
         </nav>
 
     </div>
@@ -25,7 +15,7 @@
 <main>
     <div class="container">
 
-        <h1>OLÁ, <script>document.getElementById('username').innerText</script>! </h1>
+        <h1>OLÁ, {{ nome }}!</h1>
         <p class="page-description">ESPAÇO PARA UMA FRASE</p>
 
         <div class="grid grid-2">
@@ -46,7 +36,7 @@
                 <p>ESPAÇO PARA DESCRIÇÃO DA PRÓXIMA ATIVIDADE</p>
 
                 <div class="actions">
-                    <a class="button" href="mundo.html">CONTINUAR</a>
+                    <a class="button" routerLink="/mundo">CONTINUAR</a>
                 </div>
             </section>
 
@@ -73,6 +63,3 @@
 
     </div>
 </main>
-
-</body>
-</html>
