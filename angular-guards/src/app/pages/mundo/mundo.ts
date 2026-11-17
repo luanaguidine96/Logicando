@@ -1,12 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-type EstadoFase = 'bloqueada' | 'liberada' | 'concluida';
-
-interface Fase {
-  numero: number;
-  estado: EstadoFase;
-}
+import { Fase, ProgressoService } from '../../progresso-service';
 
 @Component({
   selector: 'app-mundo',
@@ -16,35 +10,11 @@ interface Fase {
 })
 export class Mundo {
 
-  // 12 fases: só a primeira começa liberada
-  fases = signal<Fase[]>(
-    Array.from({ length: 12 }, (_, i): Fase => ({
-      numero: i + 1,
-      estado: i === 0 ? 'liberada' : 'bloqueada'
-    }))
-  );
+  private progresso = inject(ProgressoService);
+  fases = this.progresso.fases;
 
   clicarFase(indice: number) {
-    const lista = this.fases();
-
-    // impede o clique nas fases bloqueadas
-    if (lista[indice].estado === 'bloqueada') {
-      return;
-    }
-
-    this.fases.set(
-      lista.map((fase, i): Fase => {
-        // marca a fase clicada como concluída
-        if (i === indice) {
-          return { ...fase, estado: 'concluida' };
-        }
-        // libera a próxima, se ela ainda estiver bloqueada
-        if (i === indice + 1 && fase.estado === 'bloqueada') {
-          return { ...fase, estado: 'liberada' };
-        }
-        return fase;
-      })
-    );
+    this.progresso.concluirFase(indice);
   }
 
   imagem(fase: Fase): string {

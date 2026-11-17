@@ -22,18 +22,28 @@
 
             <section class="box">
                 <h2>PROGRESSO</h2>
-                <p>FASE / NÍVEL</p>
+
+                @if (progresso.faseAtual(); as fase) {
+                    <p>FASE {{ fase }} DE {{ progresso.total() }}</p>
+                } @else {
+                    <p>TODAS AS FASES CONCLUÍDAS! 🎉</p>
+                }
 
                 <div class="progress">
-                    <div></div>
+                    <div [style.width.%]="progresso.percentual()"></div>
                 </div>
 
-                <p>____% CONCLUÍDO</p>
+                <p>{{ progresso.percentual() }}% CONCLUÍDO</p>
             </section>
 
             <section class="box">
                 <h2>CONTINUAR</h2>
-                <p>ESPAÇO PARA DESCRIÇÃO DA PRÓXIMA ATIVIDADE</p>
+
+                @if (progresso.faseAtual(); as fase) {
+                    <p>Sua próxima atividade é a fase {{ fase }}.</p>
+                } @else {
+                    <p>Você terminou a trilha. Que tal jogar de novo?</p>
+                }
 
                 <div class="actions">
                     <a class="button" routerLink="/mundo">CONTINUAR</a>
@@ -46,20 +56,43 @@
 
         <div class="grid grid-3">
             <div class="stat">
-                <span class="stat-number">__</span>
+                <span class="stat-number">{{ progresso.totalConcluidas() }}</span>
                 AULAS
             </div>
-
-            <div class="stat">
-                <span class="stat-number">__</span>
-                DESAFIOS
-            </div>
-
-            <div class="stat">
-                <span class="stat-number">__</span>
-                CONQUISTAS
-            </div>
         </div>
+            
+
+        <br>
+
+        <!-- REINICIAR TRILHA (2 confirmações) -->
+        <section class="box">
+            @switch (etapaReinicio()) {
+
+                @case (0) {
+                    <div class="actions">
+                        <button type="button" class="button" (click)="pedirReinicio()">
+                            REINICIAR TRILHA
+                        </button>
+                    </div>
+                }
+
+                @case (1) {
+                    <p role="alert">Tem certeza? Você vai voltar para a fase 1.</p>
+                    <div class="actions">
+                        <button type="button" class="button" (click)="avancarReinicio()">SIM, TENHO CERTEZA</button>
+                        <button type="button" class="button" (click)="cancelarReinicio()">CANCELAR</button>
+                    </div>
+                }
+
+                @case (2) {
+                    <p role="alert"><strong>Última chance!</strong> Todo o progresso será apagado.</p>
+                    <div class="actions">
+                        <button type="button" class="button" (click)="confirmarReinicio()">APAGAR E REINICIAR</button>
+                        <button type="button" class="button" (click)="cancelarReinicio()">CANCELAR</button>
+                    </div>
+                }
+            }
+        </section>
 
     </div>
 </main>

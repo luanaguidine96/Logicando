@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProgressoService } from '../../progresso-service';
 
 @Component({
   selector: 'app-inicio-crianca',
@@ -9,7 +10,19 @@ import { RouterLink } from '@angular/router';
 })
 export class InicioCrianca {
 
+  progresso = inject(ProgressoService);
   nome = localStorage.getItem('nomeUsuario') ?? '';
+
+  etapaReinicio = signal<0 | 1 | 2>(0);
+
+  pedirReinicio()    { this.etapaReinicio.set(1); }
+  avancarReinicio()  { this.etapaReinicio.set(2); }
+  cancelarReinicio() { this.etapaReinicio.set(0); }
+
+  confirmarReinicio() {
+    this.progresso.reiniciar();
+    this.etapaReinicio.set(0);
+  }
 
   sair() {
     localStorage.removeItem('clienteLogado');

@@ -5,34 +5,32 @@
 
         <nav class="nav">
             <a routerLink="/inicio-crianca">INÍCIO</a>
-            <a routerLink="/mundo">MUNDO</a>
-            <a routerLink="/perfil">PERFIL</a>
+            <a routerLink="/home">SAIR</a>
         </nav>
 
     </div>
 </header>
-
 <main>
     <div class="container">
 
-        <h1>MEU MUNDO</h1>
-        <p class="page-description">
-            ESPAÇO PARA EXPLICAÇÃO DA TRILHA
-        </p>
+        <h1>ACOMPANHAMENTO</h1>
+
+        @if (progresso.faseAtual(); as fase) {
+            <p>A criança está na <strong>fase {{ fase }}</strong>.</p>
+        } @else {
+            <p>A criança concluiu todas as fases! 🎉</p>
+        }
+
+        <p>{{ progresso.totalConcluidas() }} de {{ progresso.total() }} fases concluídas</p>
+
+        <progress [value]="progresso.totalConcluidas()" [max]="progresso.total()"></progress>
 
         <div class="world">
-
-            <div class="world-line line-1"></div>
-            <div class="world-line line-2"></div>
-            <div class="world-line line-3"></div>
-            <div class="world-line line-4"></div>
-
-            <a class="phase phase-1" routerLink="/aula/1">FASE 1</a>
-            <a class="phase phase-2" routerLink="/aula/2">FASE 2</a>
-            <a class="phase phase-3" routerLink="/aula/3">FASE 3</a>
-            <a class="phase phase-4" routerLink="/aula/4">FASE 4</a>
-            <a class="phase phase-5" routerLink="/aula/5">FASE 5</a>
-
+            @for (fase of progresso.fases(); track fase.numero) {
+                <div class="phase" [class]="fase.estado">
+                    FASE {{ fase.numero }} – {{ fase.estado }}
+                </div>
+            }
         </div>
 
     </div>
