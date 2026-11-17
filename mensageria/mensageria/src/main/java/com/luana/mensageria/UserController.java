@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import com.luana.mensageria.Dto.CriancaResumoDto;
 import com.luana.mensageria.Dto.UserRecordDto;
 import com.luana.mensageria.Entity.User;
 import com.luana.mensageria.Service.UserService;
@@ -54,8 +55,15 @@ public class UserController {
             );
         }
     }
+@GetMapping("/user/responsavel/{login}/criancas")
+public ResponseEntity<?> buscarCriancas(
+        @PathVariable String login) {
 
-    // Realiza o login do responsável ou da criança
+    return ResponseEntity.ok(
+        userService.buscarCriancasDoResponsavel(login)
+    );
+}
+  
     @PostMapping("/login")
     public ResponseEntity<?> login(
             @RequestBody Map<String, String> dados) {

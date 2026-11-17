@@ -28,7 +28,7 @@ export class LoginCrianca {
       next: (resposta) => {
 
         localStorage.setItem('clienteLogado', 'CRIANCA');
-
+localStorage.setItem('loginUsuario', this.login);
         this.router.navigate(['/mundo']);
 
       },

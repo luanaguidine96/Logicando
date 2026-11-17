@@ -6,7 +6,7 @@ import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.luana.mensageria.Dto.CriancaResumoDto;
 import com.luana.mensageria.Dto.UserRecordDto;
 import com.luana.mensageria.Entity.User;
 import com.luana.mensageria.Entity.UserRole;
@@ -113,4 +113,29 @@ public User autenticar(String login, String senha) {
     public List<User> listarUsuarios() {
         return userRepository.findAll();
     }
+
+
+
+    public List<CriancaResumoDto> buscarCriancasDoResponsavel(String login) {
+
+    User responsavel = userRepository.findByLogin(login)
+        .orElseThrow(() ->
+            new RuntimeException("Responsável não encontrado!")
+        );
+
+    if (responsavel.getRole() != UserRole.RESPONSAVEL) {
+        throw new RuntimeException("Usuário não é responsável!");
+    }
+
+    return userRepository
+        .findByResponsavelUserId(responsavel.getUserId())
+        .stream()
+        .filter(c -> c.getRole() == UserRole.CRIANCA)
+        .map(c -> new CriancaResumoDto(
+            c.getUserId(),
+            c.getName(),
+            c.getLogin()
+        ))
+        .toList();
+}
 }

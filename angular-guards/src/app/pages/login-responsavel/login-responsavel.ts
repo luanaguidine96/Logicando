@@ -23,10 +23,12 @@ export class LoginResponsavel {
 
     this.authService.login(this.login, this.senha, 'RESPONSAVEL')
       .subscribe({
-        next: () => {
-          localStorage.setItem('clienteLogado', 'RESPONSAVEL');
-          this.router.navigate(['/acompanhamento']);
-        },
+       next: () => {
+  localStorage.setItem('clienteLogado', 'RESPONSAVEL');
+  localStorage.setItem('loginUsuario', this.login);
+
+  this.router.navigate(['/acompanhamento']);
+},
         error: (erro) => {
           this.mensagem.set(
             erro.error?.mensagem || 'Não foi possível conectar ao servidor.'

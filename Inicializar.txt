@@ -3,7 +3,13 @@ cd "C:\Users\Elvis\Documents\LUANA\TCC\tcc  24-09-2026\mensageria\mensageria"
 
 cd "C:\Users\Elvis\Documents\LUANA\TCC\tcc  24-09-2026\email\email"
 
+cd angular-guards
+ng serve
 
+
+
+luanabosco 123
+alice 123
 
 
 

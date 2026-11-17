@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Fase, ProgressoService } from '../../progresso-service';
 
@@ -8,10 +8,14 @@ import { Fase, ProgressoService } from '../../progresso-service';
   templateUrl: './mundo.html',
   styleUrl: './mundo.css'
 })
-export class Mundo {
+export class Mundo implements OnInit {
 
   private progresso = inject(ProgressoService);
   fases = this.progresso.fases;
+
+  ngOnInit() {
+    this.progresso.carregarCrianca();
+  }
 
   clicarFase(indice: number) {
     this.progresso.concluirFase(indice);
@@ -32,5 +36,6 @@ export class Mundo {
   sair() {
     localStorage.removeItem('clienteLogado');
     localStorage.removeItem('nomeUsuario');
+    localStorage.removeItem('loginUsuario');
   }
 }

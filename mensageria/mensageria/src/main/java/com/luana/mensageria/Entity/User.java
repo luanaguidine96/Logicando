@@ -17,9 +17,10 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class User implements Serializable{
             private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userId;
+   @Id
+@GeneratedValue(strategy = GenerationType.UUID)
+@Column(name = "user_id", columnDefinition = "BINARY(16)")
+private UUID userId;
     private String name;
     private String email;
     private String senha;

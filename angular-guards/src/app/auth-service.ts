@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 interface RespostaLogin {
   mensagem: string;
@@ -32,6 +32,9 @@ export class AuthService {
     return this.http.post<RespostaLogin>(
       'http://localhost:8081/login',
       { login, senha, tipo }
+    ).pipe(
+      // guarda quem logou, para o progresso saber de qual criança/responsável falar
+      tap(() => localStorage.setItem('loginUsuario', login))
     );
   }
 
