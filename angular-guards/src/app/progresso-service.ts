@@ -33,8 +33,14 @@ export class ProgressoService {
     this.buscar(`${this.API}/crianca/${encodeURIComponent(this.login())}`);
   }
 
-  carregarResponsavel() {
+  
+carregarResponsavel() {
   const login = this.login();
+
+  if (!login) {
+    console.warn('Nenhum responsável está autenticado.');
+    return;
+  }
 
   this.http.get<any>(
     `http://localhost:8081/user/responsavel/${encodeURIComponent(login)}/criancas`
