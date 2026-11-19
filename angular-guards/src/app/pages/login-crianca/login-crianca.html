@@ -18,46 +18,29 @@
 
             <form (ngSubmit)="entrar()">
 
-                <div class="campo">
-                    <label for="login">LOGIN</label>
+     <div class="campo">
+              <label for="login">LOGIN</label>
 
-                    <input
-                        type="text"
-                        id="login"
-                        name="login"
-                        [(ngModel)]="login"
-                        required
-                    >
+       <input  type="text"
+                        id="login" name="login"  [(ngModel)]="login"
+                        required  >
                 </div>
 
                 <div class="campo">
                     <label for="senha">SENHA</label>
 
-                    <input
-                        type="password"
-                        id="senha"
-                        name="senha"
-                        [(ngModel)]="senha"
-                        required
-                    >
+                    <input type="password" id="senha"
+                        name="senha" [(ngModel)]="senha"
+                        required >
                 </div>
 
                 <p role="status">{{ mensagem }}</p>
 
                 <div class="botoes">
 
-                    <button
-                        class="botao"
-                        type="submit"
-                    >
-                        ENTRAR
-                    </button>
+                    <button class="botao" type="submit">  ENTRAR  </button>
 
-                    <a
-                        class="botao"
-                        routerLink="/"
-                    >
-                        VOLTAR
+                    <a  class="botao" routerLink="/" >  VOLTAR
                     </a>
 
                 </div>
