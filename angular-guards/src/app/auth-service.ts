@@ -34,7 +34,7 @@ export class AuthService {
       { login, senha, tipo }
     ).pipe(
       // guarda quem logou, para o progresso saber de qual criança/responsável falar
-      tap(() => localStorage.setItem('loginUsuario', login))
+      tap(() => sessionStorage.setItem('loginUsuario', login))
     );
   }
 

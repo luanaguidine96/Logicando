@@ -25,7 +25,7 @@ export class ProgressoService {
   percentual = computed(() => Math.round((this.totalConcluidas() / this.total()) * 100));
 
   private login(): string {
-    return localStorage.getItem('loginUsuario') ?? '';
+    return sessionStorage.getItem('loginUsuario') ?? '';
   }
 
   /** Usado pelas telas da criança */
@@ -42,14 +42,20 @@ carregarResponsavel() {
     return;
   }
 
-  this.http.get<any>(
+  this.http.get<{ userId: string; name: string; login: string }[]>(
     `http://localhost:8081/user/responsavel/${encodeURIComponent(login)}/criancas`
   ).subscribe({
     next: (criancas) => {
-      console.log('Crianças encontradas:', criancas);
+      if (!criancas?.length) {
+        this.erro.set('Nenhuma criança vinculada a este responsável.');
+        return;
+      }
+      // busca o progresso usando o login da CRIANÇA (não o do responsável)
+      this.buscar(`${this.API}/crianca/${encodeURIComponent(criancas[0].login)}`);
     },
     error: (erro) => {
       console.error('Erro ao buscar crianças:', erro);
+      this.erro.set('Não foi possível buscar a criança.');
     }
   });
 }

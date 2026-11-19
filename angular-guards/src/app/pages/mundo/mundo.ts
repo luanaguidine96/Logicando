@@ -36,6 +36,6 @@ export class Mundo implements OnInit {
   sair() {
     localStorage.removeItem('clienteLogado');
     localStorage.removeItem('nomeUsuario');
-    localStorage.removeItem('loginUsuario');
+    sessionStorage.removeItem('loginUsuario');
   }
 }
